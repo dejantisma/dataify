@@ -13,7 +13,9 @@ function Callback() {
       //alert (hash);
 
       if(access_token == null){
-          window.location = window.location.protocol+window.location.host;
+          console.log(window.location.protocol);
+          console.log(window.location.host);
+          window.location = window.location.protocol+"//"+window.location.host;
       }
       console.log(access_token);
       console.log(token_type);
