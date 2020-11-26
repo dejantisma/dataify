@@ -12,8 +12,6 @@ import Callback from './Callback';
 function App() {
   return (
     <Router>
-
-
       <div className="App">
         <Navbar bg="success" variant="dark">
           <Navbar.Brand href="/home">Dataify</Navbar.Brand>
@@ -25,13 +23,7 @@ function App() {
           <Nav className="ml-auto">
             <Nav.Link href="https://github.com/dejantisma">GitHub</Nav.Link>
           </Nav>
-
-
-
-
-        </Navbar>
-
-     
+        </Navbar>  
 
         <Switch>
           <Route path="/" exact component={Home}></Route>
@@ -72,12 +64,6 @@ async function getAccessToken(e){
   await openLogin();
   console.log('finishing getAccessToken');
 
-  if(window.location.hash){
-    //got access
-    console.log('got hash');
-      }else{
-    console.log('no hash');
-      }
   
 }
 async function openLogin(e){
@@ -88,7 +74,7 @@ async function openLogin(e){
 
 var client_id = '3f5e2b54cd754feaac87cc017616ba7e'; // Your client id
 var client_secret = 'CLIENT_SECRET'; // Your secret
-var redirect_uri = 'http://localhost:3000/callback'; // Your redirect uri
+var redirect_uri = 'https://dataify.herokuapp.com/callback/'; // Your redirect uri
 var scopes = 'user-read-private user-read-email';
 
 
