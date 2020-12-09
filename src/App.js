@@ -66,8 +66,8 @@ async function openLogin(e) {
 
 var client_id = '3f5e2b54cd754feaac87cc017616ba7e'; // Your client id
 var client_secret = 'CLIENT_SECRET'; // Your secret
-//var redirect_uri = 'https://dataify.herokuapp.com/callback/'; // Your redirect uri
-var redirect_uri = 'http://localhost:3000/callback'; // Your redirect uri
+var redirect_uri = 'https://dataify.herokuapp.com/callback/'; // Your redirect uri
+//var redirect_uri = 'http://localhost:3000/callback'; // Your redirect uri
 var scopes = 'user-read-private user-read-email user-read-recently-played user-top-read user-library-read user-follow-read user-read-currently-playing user-read-playback-state';
 
 
