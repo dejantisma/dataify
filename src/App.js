@@ -11,6 +11,7 @@ import Callback from './Callback';
 
 function App() {
   return (
+    
     <Router>
       <div className="App">
         <Navbar bg="success" variant="dark">
@@ -31,6 +32,7 @@ function App() {
 
           <Route path="/about" component={About}></Route>
           <Route path="/callback" component={Callback}></Route>
+
         </Switch>
 
       </div>
@@ -45,10 +47,11 @@ const Home = () =>
     <div>
       <br></br>
       <br></br>
-      <h1>Welcome!</h1>
-      <h2>Let's see your Spotify data.</h2>
+      <h1 style={{ fontFamily: 'Nerko One', textAlign: "center", fontSize: 200 }}>Welcome!</h1>
+      <h2 >Let's see your Spotify data.</h2>
       <br></br>
-      <Button onClick={openLogin}>
+      <br></br>
+      <Button variant="success" size="lg" onClick={openLogin}>
         Login With Spotify
     </Button>
     
@@ -63,8 +66,8 @@ async function openLogin(e) {
 
 var client_id = '3f5e2b54cd754feaac87cc017616ba7e'; // Your client id
 var client_secret = 'CLIENT_SECRET'; // Your secret
-var redirect_uri = 'https://dataify.herokuapp.com/callback/'; // Your redirect uri
-//var redirect_uri = 'http://localhost:3000/callback'; // Your redirect uri
+//var redirect_uri = 'https://dataify.herokuapp.com/callback/'; // Your redirect uri
+var redirect_uri = 'http://localhost:3000/callback'; // Your redirect uri
 var scopes = 'user-read-private user-read-email user-read-recently-played user-top-read user-library-read user-follow-read user-read-currently-playing user-read-playback-state';
 
 
