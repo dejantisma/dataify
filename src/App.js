@@ -52,7 +52,7 @@ const Home = () =>
       <br></br>
       <br></br>
       <Button variant="success" size="lg" onClick={openLogin}>
-        Login With Spotify
+        Login With Spotify 
     </Button>
     
     </div>
