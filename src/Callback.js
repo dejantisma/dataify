@@ -1,6 +1,6 @@
 import './App.css';
 import React, { Link, useEffect, useState } from 'react';
-import { CardGroup,Card, Modal, Carousel, Badge, Alert, Form, Button, InputGroup, Dropdown, DropdownButton, FormControl, CardDeck } from 'react-bootstrap';
+import { CardGroup, Card, Modal, Carousel, Badge, Alert, Form, Button, InputGroup, Dropdown, DropdownButton, FormControl, CardDeck } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -33,23 +33,23 @@ function Callback() {
     const [uploadFile, setUploadFile] = useState();
     const [streamingDataArr, setStreamingDataArr] = useState([]);
     const [modalTitle, setModalTitle] = useState('');
-    const [timeListened,setTimeListened] = useState('');
-    const [totalStreams, setTotalStreams]=useState('');
-    const [firstDate,setFirstDate]=useState('');
-    const [lastDate,setLastDate]=useState('');
-    const [lastSong,setLastSong]=useState('');
-    const [firstSong,setFirstSong]=useState('');
-    const [imageURLModal,setImageURLModal]=useState('');
+    const [timeListened, setTimeListened] = useState('');
+    const [totalStreams, setTotalStreams] = useState('');
+    const [firstDate, setFirstDate] = useState('');
+    const [lastDate, setLastDate] = useState('');
+    const [lastSong, setLastSong] = useState('');
+    const [firstSong, setFirstSong] = useState('');
+    const [imageURLModal, setImageURLModal] = useState('');
     const [artist, setArtist] = useState('');
     const [show, setShow] = useState(false);
-    const[song1IMG,setSong1IMG] = useState('');
-    const[song2IMG,setSong2IMG] = useState('');
+    const [song1IMG, setSong1IMG] = useState('');
+    const [song2IMG, setSong2IMG] = useState('');
 
-    const[song3IMG,setSong3IMG] = useState('');
-    const[song4IMG,setSong4IMG] = useState('');
-    const[topTracksAllTime,setTracksAllTime]=useState([])
-    const[topTracks,setTracks]=useState([])
-    const[topTracks6MO,setTracks6Mo]=useState([])
+    const [song3IMG, setSong3IMG] = useState('');
+    const [song4IMG, setSong4IMG] = useState('');
+    const [topTracksAllTime, setTracksAllTime] = useState([])
+    const [topTracks, setTracks] = useState([])
+    const [topTracks6MO, setTracks6Mo] = useState([])
 
 
 
@@ -70,10 +70,10 @@ function Callback() {
         } else if (hours < 24) {
             return hours + " hours!";
         } else {
-            return days + " days.. or "+24*days+" hours!";
+            return days + " days.. or " + 24 * days + " hours!";
         }
     }
-    
+
 
 
     const handleSelect = (e) => {
@@ -84,8 +84,8 @@ function Callback() {
 
     const addTime = (name, type) => {
         if (type === 'track') {
-            console.log('ADDING UP ALL THE TIME IN STREAMINGDATAARR FOR ' + name);
-            console.log(streamingDataArr);
+          //  console.log('ADDING UP ALL THE TIME IN STREAMINGDATAARR FOR ' + name);
+          //  console.log(streamingDataArr);
 
             var result = streamingDataArr.filter(obj => {
                 return obj.trackName === name;
@@ -95,8 +95,8 @@ function Callback() {
 
             // console.log(result);
         } else {
-            console.log('ADDING UP ALL THE TIME IN STREAMINGDATAARR FOR ' + name);
-            console.log(streamingDataArr);
+          //  console.log('ADDING UP ALL THE TIME IN STREAMINGDATAARR FOR ' + name);
+          //  console.log(streamingDataArr);
             var result = streamingDataArr.filter(obj => {
                 //  console.log(obj.artistName);
                 return obj.artistName === name;
@@ -106,29 +106,29 @@ function Callback() {
 
         }
 
-        console.log(result);
+       // console.log(result);
 
-        console.log('TOTAL=' + result.reduce((a, b) => +a + +b.msPlayed, 0));
+       // console.log('TOTAL=' + result.reduce((a, b) => +a + +b.msPlayed, 0));
         setTimeListened(result.reduce((a, b) => +a + +b.msPlayed, 0));
         setTotalStreams(result.length);
 
-        console.log('sorted by date');
-        result.sort(function(a,b){
-            return new Date(b.endTime)- new Date(a.endTime);
+      //  console.log('sorted by date');
+        result.sort(function (a, b) {
+            return new Date(b.endTime) - new Date(a.endTime);
         });
 
         setLastDate(result[0].endTime);
-        setFirstDate(result[result.length-1].endTime);
-        if(type === 'artist'){
-            setLastSong(' ('+result[0].trackName+')');
-            setFirstSong(' ('+result[result.length-1].trackName+')');
-            console.log('last = '+lastSong);
-        }else{
-            setArtist(' by '+result[0].artistName);
+        setFirstDate(result[result.length - 1].endTime);
+        if (type === 'artist') {
+            setLastSong(' (' + result[0].trackName + ')');
+            setFirstSong(' (' + result[result.length - 1].trackName + ')');
+       //     console.log('last = ' + lastSong);
+        } else {
+            setArtist(' by ' + result[0].artistName);
             setLastSong('');
             setFirstSong('');
         }
-        console.log(result);
+      //  console.log(result);
 
     }
 
@@ -149,34 +149,34 @@ function Callback() {
             }
 
         }).then(data => {
-                if (buttonSearchTitle.toLowerCase() === 'song') {
-                    console.log(data.tracks?.items[0]);
-                    setSearchReturn(data.tracks?.items[0])
-                    console.log('Adding up all ' + data.tracks?.items[0].name + ' streams');
-                    console.log('arr in search');
-                    console.log(typeof streamingDataArr);
-                    addTime(data.tracks?.items[0].name, 'track');
-                    setModalTitle(data.tracks?.items[0].name);
-                   setImageURLModal('');
+            if (buttonSearchTitle.toLowerCase() === 'song') {
+            //    console.log(data.tracks?.items[0]);
+                setSearchReturn(data.tracks?.items[0])
+                // console.log('Adding up all ' + data.tracks?.items[0].name + ' streams');
+                // console.log('arr in search');
+                // console.log(typeof streamingDataArr);
+                addTime(data.tracks?.items[0].name, 'track');
+                setModalTitle(data.tracks?.items[0].name);
+                setImageURLModal('');
 
 
-                    // } else if (buttonSearchTitle.toLowerCase() === 'artist') {
-                    //     console.log(data.artists?.items[0]);
-                    //     setSearchReturn(data.artists?.items[0])
-                } else {
-                    console.log(data);
-                    
-                    setSearchReturn(data.artists?.items[0])
-                    //console.log('Adding up all ' + data.artists?.items[0].name + ' streams');
-                    addTime(data.artists?.items[0].name, 'artist');
-                   setImageURLModal(data.artists?.items[0]?.images[0]?.url);
-                    setModalTitle(data.artists?.items[0].name);
-                }
-                handleShow();
-            }).catch((error) => {
-                console.log('middle catch');
-                console.log(error);
-            })
+                // } else if (buttonSearchTitle.toLowerCase() === 'artist') {
+                //     console.log(data.artists?.items[0]);
+                //     setSearchReturn(data.artists?.items[0])
+            } else {
+              //  console.log(data);
+
+                setSearchReturn(data.artists?.items[0])
+                //console.log('Adding up all ' + data.artists?.items[0].name + ' streams');
+                addTime(data.artists?.items[0].name, 'artist');
+                setImageURLModal(data.artists?.items[0]?.images[0]?.url);
+                setModalTitle(data.artists?.items[0].name);
+            }
+            handleShow();
+        }).catch((error) => {
+            // console.log('middle catch');
+            // console.log(error);
+        })
 
     }
 
@@ -190,10 +190,10 @@ function Callback() {
             let reader = new FileReader();
             reader.onload = function (e) {
                 setStreamingDataArr(oldArr => [...oldArr, ...JSON.parse(reader.result)]);
-                console.log("pushed data")
+              //  console.log("pushed data")
                 //console.log(reader.result);
-                console.log("streamingdataarr onfilechange");
-                console.log(streamingDataArr);
+                // console.log("streamingdataarr onfilechange");
+                // console.log(streamingDataArr);
 
             }
 
@@ -203,7 +203,7 @@ function Callback() {
 
     }
 
-    
+
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -258,52 +258,52 @@ function Callback() {
 
 
 
-                fetch('https://api.spotify.com/v1/me/top/tracks?time_range=short_term', {
-                    headers: {
-                        Accept: "application/json",
-                        Authorization: `Bearer ${access_token}`,
-                        "Content-Type": "application/json"
-                    }
-                }).then(response => response.json())
-                    .then(data => {
-                        console.log("TRACKS RECENT");
-                          console.log(data.items);
-                        setTracks(data.items);
-                        //   console.log(topArtistsAllTime[0].images[0].url);
-    
-                    }).catch(error => { console.error('Error:' + error) })
+            fetch('https://api.spotify.com/v1/me/top/tracks?time_range=short_term', {
+                headers: {
+                    Accept: "application/json",
+                    Authorization: `Bearer ${access_token}`,
+                    "Content-Type": "application/json"
+                }
+            }).then(response => response.json())
+                .then(data => {
+                    // console.log("TRACKS RECENT");
+                    // console.log(data.items);
+                    setTracks(data.items);
+                    //   console.log(topArtistsAllTime[0].images[0].url);
+
+                }).catch(error => { console.error('Error:' + error) })
 
 
-                fetch('https://api.spotify.com/v1/me/top/tracks?time_range=long_term', {
-                    headers: {
-                        Accept: "application/json",
-                        Authorization: `Bearer ${access_token}`,
-                        "Content-Type": "application/json"
-                    }
-                }).then(response => response.json())
-                    .then(data => {
-                      //  console.log("TRACKS ALL TIME");
-                          console.log(data.items);
-                        setTracksAllTime(data.items);
-                        //   console.log(topArtistsAllTime[0].images[0].url);
-    
-                    }).catch(error => { console.error('Error:' + error) })
+            fetch('https://api.spotify.com/v1/me/top/tracks?time_range=long_term', {
+                headers: {
+                    Accept: "application/json",
+                    Authorization: `Bearer ${access_token}`,
+                    "Content-Type": "application/json"
+                }
+            }).then(response => response.json())
+                .then(data => {
+                    //  console.log("TRACKS ALL TIME");
+                    console.log(data.items);
+                    setTracksAllTime(data.items);
+                    //   console.log(topArtistsAllTime[0].images[0].url);
+
+                }).catch(error => { console.error('Error:' + error) })
 
 
-                    fetch('https://api.spotify.com/v1/me/top/tracks?time_range=medium_term', {
-                        headers: {
-                            Accept: "application/json",
-                            Authorization: `Bearer ${access_token}`,
-                            "Content-Type": "application/json"
-                        }
-                    }).then(response => response.json())
-                        .then(data => {
-                          //  console.log("TRACKS ALL TIME");
-                              console.log(data.items);
-                            setTracks6Mo(data.items);
-                            //   console.log(topArtistsAllTime[0].images[0].url);
-        
-                        }).catch(error => { console.error('Error:' + error) })
+            fetch('https://api.spotify.com/v1/me/top/tracks?time_range=medium_term', {
+                headers: {
+                    Accept: "application/json",
+                    Authorization: `Bearer ${access_token}`,
+                    "Content-Type": "application/json"
+                }
+            }).then(response => response.json())
+                .then(data => {
+                    //  console.log("TRACKS ALL TIME");
+                    console.log(data.items);
+                    setTracks6Mo(data.items);
+                    //   console.log(topArtistsAllTime[0].images[0].url);
+
+                }).catch(error => { console.error('Error:' + error) })
 
 
         }
@@ -367,89 +367,56 @@ function Callback() {
             <hr></hr>
             <h1 style={{ fontFamily: 'Nerko One', textAlign: "center", fontSize: 200 }}>Songs</h1>
 
-<div className="container">
+            <div className="container">
 
 
-<h3 style={{ fontFamily: 'Nerko One', textAlign: "center", fontSize: 40 }}>Recently (1 mo.)</h3>
+                <h3 style={{ fontFamily: 'Nerko One', textAlign: "center", fontSize: 40 }}>Recently (1 mo.)</h3>
 
-<CardDeck>
-{topTracks?.slice(0,5).map(a=>
-    <Card>
-        <a href={a.external_urls.spotify}><Card.Img variant="top" src={a.album.images[0].url}/></a>
-<Card.Body>
-    <Card.Title>{a.name}</Card.Title>
-    <Card.Text>{a.artists[0].name}</Card.Text>
-</Card.Body>
-    </Card>
-    
-    )}
-</CardDeck>
+                <CardDeck>
+                    {topTracks?.slice(0, 5).map(a =>
+                        <Card>
+                            <a href={a.external_urls.spotify}><Card.Img variant="top" src={a.album.images[0].url} /></a>
+                            <Card.Body>
+                                <Card.Title>{a.name}</Card.Title>
+                                <Card.Text>{a.artists[0].name}</Card.Text>
+                            </Card.Body>
+                        </Card>
 
-<br></br>
+                    )}
+                </CardDeck>
 
-<h3 style={{ fontFamily: 'Nerko One', textAlign: "center", fontSize: 40 }}>Recently (6 mo.)</h3>
+                <br></br>
 
-<CardDeck>
-{topTracks6MO?.slice(0,5).map(a=>
-    <Card>
-        <a href={a.external_urls.spotify}><Card.Img variant="top" src={a.album.images[0].url}/></a>
-<Card.Body>
-    <Card.Title>{a.name}</Card.Title>
-    <Card.Text>{a.artists[0].name}</Card.Text>
-</Card.Body>
-    </Card>
-    
-    )}
-</CardDeck>
+                <h3 style={{ fontFamily: 'Nerko One', textAlign: "center", fontSize: 40 }}>Recently (6 mo.)</h3>
 
-<br></br>
+                <CardDeck>
+                    {topTracks6MO?.slice(0, 5).map(a =>
+                        <Card>
+                            <a href={a.external_urls.spotify}><Card.Img variant="top" src={a.album.images[0].url} /></a>
+                            <Card.Body>
+                                <Card.Title>{a.name}</Card.Title>
+                                <Card.Text>{a.artists[0].name}</Card.Text>
+                            </Card.Body>
+                        </Card>
 
-<h3 style={{ fontFamily: 'Nerko One', textAlign: "center", fontSize: 40 }}>All time</h3>
-<CardDeck>
-{topTracksAllTime?.slice(0,5).map(a=>
-    <Card>
-        <a href={a.external_urls.spotify}><Card.Img variant="top" src={a.album.images[0].url}/></a>
-<Card.Body>
-    <Card.Title>{a.name}</Card.Title>
-    <Card.Text>{a.artists[0].name}</Card.Text>
-</Card.Body>
-    </Card>
-    
-    )}
-</CardDeck>
+                    )}
+                </CardDeck>
 
-                {/* <CardDeck>
-                    <Card border="primary" style={{ width: '18rem' }}>
-                        <Card.Img variant="top" src={song1IMG} />
-                        <Card.Body>
-                            <Card.Title>Card title</Card.Title>
-                            <Card.Text>
-                                This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.
-      </Card.Text>
-                        </Card.Body>
-                    </Card>
-                    <Card border="success" style={{ width: '18rem' }}>
-                        <Card.Img variant="bottom" src={song2IMG} />
-                        <Card.Body>
-                            <Card.Title>Card title</Card.Title>
-                            <Card.Text>
-                                This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.
-      </Card.Text>
-                        </Card.Body>
-                    </Card>
-                    <Card border="danger" style={{ width: '18rem' }} >
-                        <Card.Img variant="top" src="" />
-                        <Card.Body>
-                            <Card.Title>Card title</Card.Title>
-                            <Card.Text>
-                                This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.
-      </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </CardDeck> */}
+                <br></br>
+
+                <h3 style={{ fontFamily: 'Nerko One', textAlign: "center", fontSize: 40 }}>All time</h3>
+                <CardDeck>
+                    {topTracksAllTime?.slice(0, 5).map(a =>
+                        <Card>
+                            <a href={a.external_urls.spotify}><Card.Img variant="top" src={a.album.images[0].url} /></a>
+                            <Card.Body>
+                                <Card.Title>{a.name}</Card.Title>
+                                <Card.Text>{a.artists[0].name}</Card.Text>
+                            </Card.Body>
+                        </Card>
+
+                    )}
+                </CardDeck>
 
             </div>
 
@@ -461,7 +428,8 @@ function Callback() {
                 <Alert variant="success">
                     <Alert.Heading>Upload your Spotify data <Badge variant="success" pill>New</Badge> </Alert.Heading>
                     <p>
-                        Unfortunately, the Spotify Web API is limited in the data that it provides. You saw how we could use it above, but unfortunately the only sort of history or playback accessible via the API is the last 50 tracks. You can access all time personalization like we did above, but there's no detail in terms of how many tracks streamed or hours or what tracks exactly. To view more data you have to request it from Spotify via https://www.spotify.com/us/account/privacy/,
+                        Unfortunately, the Spotify Web API is limited in the data that it provides. You saw how we could use it above, but unfortunately the only sort of history or playback accessible via the API is the last 50 tracks. You can access all time personalization like we did above, but there's no detail in terms of how many tracks streamed or
+                        hours or what tracks exactly. To view more data you have to request it from Spotify via <a href="https://www.spotify.com/us/account/privacy/">https://www.spotify.com/us/account/privacy/</a>,
                         you're able to download your Spotify data over the last year including streaming history. Keep in mind once you request your data it may take a few days to process before you can download it.</p>
                     <hr />
                     <p className="mb-0">
@@ -505,31 +473,28 @@ function Callback() {
             </div>
 
 
-
-
-
-            <Modal  aria-labelledby="contained-modal-title-vcenter"
-      centered show={show} onHide={handleClose}
-      >
+            <Modal aria-labelledby="contained-modal-title-vcenter"
+                centered show={show} onHide={handleClose}
+            >
                 <Modal.Header closeButton>
                     <Modal.Title>{modalTitle}{artist}</Modal.Title>
                 </Modal.Header>
-                    <Modal.Body>
-                        <img src={imageURLModal} className="img-fluid">
-                        </img>
-                   
-                   {imageURLModal !=''? ( //spocing if image or not (have an extra line break)
-                       <div>
-                           <br></br>
-                       </div>
-                   ):(  
-                    null
-                   )}                       
+                <Modal.Body>
+                    <img src={imageURLModal} className="img-fluid">
+                    </img>
+
+                    {imageURLModal != '' ? ( //spocing if image or not (have an extra line break)
+                        <div>
+                            <br></br>
+                        </div>
+                    ) : (
+                            null
+                        )}
                         You've listened <b>{totalStreams}</b> times for a total of {timeListened}ms. That's {timeConversion(timeListened)}
                     <hr></hr>
                     You first listened to {modalTitle} on {firstDate}{firstSong} and most recently on {lastDate}{lastSong}!
                     </Modal.Body>
-                
+
                 <Modal.Footer>
                     <Button variant="primary" onClick={handleClose}>
                         Close
@@ -537,9 +502,7 @@ function Callback() {
                 </Modal.Footer>
             </Modal>
 
-
         </div>
-
 
 
     );

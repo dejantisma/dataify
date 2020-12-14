@@ -22,7 +22,7 @@ function App() {
 
           </Nav>
           <Nav className="ml-auto">
-            <Nav.Link href="https://github.com/dejantisma">GitHub</Nav.Link>
+            <Nav.Link href="https://github.com/dejantisma/dataify">GitHub</Nav.Link>
           </Nav>
         </Navbar>
 
